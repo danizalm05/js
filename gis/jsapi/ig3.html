@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<!-- https://www.youtube.com/watch?v=u1BmUL48dE4&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=3
+    https://github.com/hnasr/jsapi4x/blob/episode1/ig.html
+  15
+ -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>IGeometry-Head</title>
+	<script src = 'https://js.arcgis.com/4.4'></script>
+	<link rel = "stylesheet" href = "https://js.arcgis.com/4.4/esri/css/main.css">
+</head>
+<body>
+    Service: <select id = 'lstservices'></select><br>
+  <button id = 'satellite'> Satellite </button>
+   <div id = 'mapview' style = 'width:800px; height:600px'></div>
+
+
+ <script>
+ let map1,map2,map3,  mapview;
+  require (["esri/Map",
+             "esri/views/MapView",
+             "esri/views/SceneView",
+             "esri/request"
+             ],
+     function(Map,MapView,SC,Request)
+	    {
+	     map1 = new Map({basemap:"topo"});
+		   map2 = new Map({basemap:"satellite"});
+       map3= new Map({basemap:"streets"});
+       let viewoptions = {
+                  container:"mapview",
+                  map:map3,
+                  zoom:11,
+                  center:  [ -117.17835389687758,32.70487844555794],
+                  scale:25000
+                };
+       /*mapview = new MapView({
+                  container:"mapview",
+		              map:map1,
+                  zoom:11,
+							    center: [50.62154531477522,25.94421084350059]});
+*/
+
+    //  baseurl2 ="https://sampleserver6.arcgisonline.com/arcgis/rest/services/";
+
+      sceneview =  new SC(viewoptions);
+      url0 ="https://sampleserver6.arcgisonline.com/arcgis/rest/?f=json";
+             url1 ="https://server.arcgisonline.com/arcgis/rest/?f=json";
+      let options = {responseType: "json"};
+      Request(url1, options).
+         then (function(response){
+
+           let result = response.data;
+           console.log(result);
+           let lstservices = document.getElementById("lstservices");
+           for (let i = 0; i< result.services.length; i++)
+           {
+              console.log(i,'  ', result.services[i].name);
+              let option = document.createElement("option");
+             option.textContent = result.services[i].name;
+            //if (DEFAULT_SERVICE == result.services[i].name) option.selected=true;
+            lstservices.appendChild(option);
+
+           }
+         })
+       }//function
+    );//require
+    document.getElementById('satellite').addEventListener("click",
+     function(){
+        //mapview.map = map2;
+        sceneview.map = map2;
+     }
+  )
+ </script>
+</body>
+</html>

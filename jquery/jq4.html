@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--https://www.youtube.com/watch?v=qrFf7Xee4N0&t=1s
+     Document Object Model manipulation with JQuery.   Ways to add and delete elements to the DOM.
+    before(), insertBefore(), prependTo(), appendTo(), append(), insertAfter(), after(),remove().
+ 
+--> 
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ 
+<meta http-equiv="Content-Type" content="text/html"  charset="utf-8"/>
+
+<title>JQuery  Pt 4 </title>
+
+ <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script-->
+
+   
+ <script type="text/javascript">
+  $("documet").ready(function() {
+    // Bind function calls to the buttons on the page
+   $("#replaceWHtml").bind("click", replaceWHtml);//button id=replaceWHtml
+   $("#replaceWText").bind("click", replaceWText);//button id=replaceWText 
+   $("#addAPara").bind("click", addAPara);
+   $("#removeAPara").bind("click", removeAPara);
+   $("#lastIsFirst").bind("click", lastIsFirst);
+   $("#addBefore").bind("click", addBefore);
+   $("#addAfter").bind("click", addAfter);
+   $("#addToTextBox").bind("click", addToTextBox);
+});
+
+// You use html when you want to replace tags
+ function replaceWHtml() {
+   $("#h3Tag").html("<h6>Now I\’m an h6 tag</h6>");
+ }  
+
+// You use text when you want to replace only the text
+ function replaceWText() {
+  $("#h3Tag").text("<h6>Didn\’t replace text</h6>");
+} 
+ 
+function addAPara() {
+  $("#randPara").append("<p>Another Paragraph</p>");
+ }
+
+ 
+// Remove deletes an html element
+ function removeAPara() {
+    $("#randPara p:last").remove();
+ } 
+
+ function lastIsFirst() {
+   $("#randPara p:last").append($("#randPara p:first"));
+ } 
+ 
+ function addBefore() {
+   $("#randPara p:first").before("I go before anything");
+ }
+
+ 
+
+// You use after to place elements after another
+
+function addAfter() {
+  $("#randPara p:last").after("I go after everything");
+ }
+ 
+// Use val to change form element values
+ function addToTextBox() {
+   $("#randText").val("Random Text");
+ } 
+ 
+ </script>
+
+
+<noscript>
+
+<h3>This site requires JavaScript</h3>
+
+</noscript>
+
+</head>
+
+
+ <body>
+
+<div><h3>Playing With Text</h3></div>
+
+ 
+
+<div>
+
+<h3 id="h3Tag">H3 Tag</h3>
+
+</div>
+
+<br />
+
+ 
+
+<div id="randPara">
+
+<p id="firstP">The First Paragraph<p>
+
+</div>
+
+ 
+
+<br /><br />
+
+ 
+
+<form action="">
+  Text: <input type="text" name="fname" id="randText"><br>
+  <button type="button" id="replaceWHtml">replaceWHtml</button>
+  <button type="button" id="replaceWText">replaceWText</button>
+  <button type="button" id="addAPara">addAPara</button><br>
+  <button type="button" id="removeAPara">removeAPara</button>
+  <button type="button" id="lastIsFirst">lastIsFirst</button>
+  <button type="button" id="addBefore">addBefore</button><br>
+  <button type="button" id="addAfter">addAfter</button>
+  <button type="button" id="addToTextBox">addToTextBox</button>
+  <button type="button" id="deleteSpan">Delete Spans</button>
+
+</form>
+
+  
+
+<br />
+
+ 
+
+</body>
+
+</html>
+
+ 

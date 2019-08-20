@@ -1,0 +1,33 @@
+<html>
+  <head>
+     <meta charset="utf-8"/>
+ </head>
+<body>
+ <p> Image./2.jpg" </p>
+ <br>
+ <img id="original-image" src="./2.jpg"  >
+ <canvas id="filtered-image" />
+
+ <body onload="flt()">
+
+  <script type="text/javascript" src="lub-filter.js"></script>
+  <script>
+
+
+
+
+   function flt(){
+     // Get the image
+    var originalImage = document.getElementById("original-image");
+     // The canvas where the processed image will be rendered (With filter)
+    var filteredImageCanvas = document.getElementById("filtered-image");
+    // Filter to apply
+     var filter = Lubfilt["Conway"];
+   // Apply the filter
+  	Lubfilt.filterImage(filteredImageCanvas, filter, originalImage);
+
+
+  }
+</script>
+</body>
+</html>

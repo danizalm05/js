@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Load a basic WebMap - 4.12</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/light/main.css"
+    />
+
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <script>
+     // require(["esri/views/MapView", "esri/WebMap"], function(MapView, WebMap) {
+     require(
+	        [
+			   "esri/views/SceneView", 
+		       "esri/WebScene"
+			],
+    	    function(
+                  SceneView,
+                  WebScene
+      ) 
+
+     {  
+	 /************************************************************
+         * Creates a new WebMap instance. A WebMap must reference
+         * a PortalItem ID that represents a WebMap saved to
+         * arcgis.com or an on-premise portal.
+         *
+         * To load a WebMap from an on-premise portal, set the portal
+         * url with esriConfig.portalUrl.
+         ************************************************************/
+       /* var webmap = new WebMap({
+          portalItem: {
+            // autocasts as new PortalItem()
+            
+			  id: "ed6af799ea684dd18b1eb8d3ff039767"
+			 
+          }
+        });*/
+
+        /************************************************************
+         * Set the WebMap instance to the map property in a MapView.
+         ************************************************************/
+       /* var view = new MapView({
+          map: webmap,
+          container: "viewDiv"
+        });*/
+		
+		/************************************************************
+ * Creates a new WebScene instance. A WebScene must reference
+ * a PortalItem ID that represents a WebScene saved to
+ * arcgis.com or an on-premise portal.
+ ************************************************************/
+
+var scene = new WebScene({
+  portalItem: {
+    id: "3a9976baef9240ab8645ee25c7e9c096"
+  }
+});
+
+/************************************************************
+ * Set the WebScene instance to the map property in a SceneView.
+ ************************************************************/
+var view = new SceneView({
+  map: scene,
+  container: "viewDiv"
+});
+		
+		
+		
+		
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>

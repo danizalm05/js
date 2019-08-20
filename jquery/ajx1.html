@@ -1,0 +1,179 @@
+
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- http://www.newthinktank.com/2011/03/jquery-video-tutorial-pt-2/  --> 
+
+<html>
+ <head>
+ <title>JQuery Example</title>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <style>
+	p.third {
+	   font-weight: normal;
+	}
+
+	p.styleSample {
+	   font-weight: bold;
+	   text-decoration:line-through;
+	   text-transform:uppercase;
+	}
+
+	a.email {
+	    background: url(http://www.newthinktank.com/images/email-icon.gif) no-repeat right top;
+	    padding-right: 20px;
+	}
+
+	.tableAlt {
+    	background-color: #A5A5DA;
+	   font-weight: bold;
+	}
+
+	.tableTitle {
+	    background-color: #3D2B1F;
+	    color: #FFF;
+	    font-weight: bold;
+	}
+ </style>
+ 
+ <meta charset="utf-8"/>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+
+   
+ <script type="text/javascript">
+
+ window.onload = function() {
+ 	document.getElementById("twoButton").onclick = makeTablePretty;
+	document.getElementById("threeButton").onclick = fixTableTitle;
+    document.getElementById("fiveButton").onclick = messAllPInDiv;
+   document.getElementById("sevenButton").onclick = findAttribute;
+/*		document.getElementById("eightButton").onclick = findPThird;*/
+};
+
+
+$("documet").ready(function() {
+   $("#oneButton").bind("click", addEmailIcon);
+   $("#fourButton").bind("click", messUpP);
+   $("#sixButton").bind("click", highlightFourth);
+   $("#eightButton").bind("click" , findPThird);
+   $("h4:first").css("background-color", "yellow");
+ 
+  
+ });
+function addEmailIcon() {
+    
+	 $("a[href^='mailto:']").addClass("email");
+    $(".email").css({"background-color": "purple", "color": "white"});
+}
+
+function makeTablePretty(){
+    $("tr:nth-child(even)").addClass("tableAlt");
+	$("p:last").css({"background-color": "purple", "color": "white"});
+	//$("tr:nth-child(even)").css({"background-color": "purple", "color": "green"}) ;
+}
+
+
+function fixTableTitle(){
+    $("tr:nth-child(1)").addClass("tableTitle");
+}
+
+function messUpP(){
+      //find the 3rd paragraph   and change it’s class.
+   $("p").eq(3).toggleClass("styleSample");
+}
+
+function messAllPInDiv() {
+//  changes the class for every paragraph element that lies in a div element.
+   $("div > p").toggleClass("styleSample");
+}
+
+function highlightFourth(){
+//Look for the text “Fourth” inside of every paragraph element
+//If we find that word=“Fourth”,change the attribute to  text color = “blue”. 
+      $('p:contains("Fourth")').css("color", "blue");
+}
+
+function findAttribute(){
+/*Searching for element’s that have the attribute align assigned some value.
+ If I find one I then assign the change listed.
+I could also search for element’s that have an attribute assigned with a specific value. If I was looking for a paragraph element with the attribute align assigned the value of left I would do the following:
+     $(‘p[align=”left”]’  
+*/
+  $("p[align]").css("font-style", "italic");
+}
+
+function findPThird(){
+  if($("#third").is("p")){
+   /* Look for an element that has the id name of ‘third’. 
+      If I find it I then check if that element is a paragraph element.
+     If both check out, pop up an alert box that states that fact.
+   */
+    alert("I found the paragraph named third");
+  }
+}
+
+   
+</script>
+
+<noscript><h3>This site requires JavaScript</h3></noscript>
+
+</head>
+
+<body>
+
+  <div><h2>Playing with Paragraphs</h2></div>
+
+<table border="1" cellpadding="5">
+<tr>
+<th>Sat</th>
+<th>Sun</th>
+<th>Mon</th>
+</tr>
+
+<tr>
+<td>Played Ball</td>
+<td>Watched Football</td>
+<td>Worked</td>
+</tr>
+
+<tr>
+<td>Worked</td>
+<td>Went to Church</td>
+<td>Worked</td>
+</tr>
+
+<tr>
+<td>Time with Wife</td>
+<td>Went Hiking</td>
+<td>Worked</td>
+</tr>
+</table>
+
+<div>
+<p id="first"><a href="mailto:derekbanas@newthinktank.com">Send me an email</a></p>
+<p id="second">Second Paragraph</p>
+<p id="third">Third Paragraph</p>
+<p id="fourth">Fourth Paragraph</p>
+<p id="fifth" align="left">Fifth Paragraph</p>
+</div>
+
+<div>
+<p id="sixth">Sixth Paragraph</p>
+</div>
+
+<form>
+<button type="button" id="oneButton">Add Email Icon</button>
+<button type="button" id="twoButton">Make Table Pretty</button>
+<button type="button" id="threeButton">Fix Table Title</button>
+<button type="button" id="fourButton">Mess up 4th P</button>
+<button type="button" id="fiveButton">Mess All P in Divs</button>
+<button type="button" id="sixButton">Highlight Fourth</button>
+<button type="button" id="sevenButton">Find p with Attribute</button>
+<button type="button" id="eightButton">Find p Named third</button>
+
+</form>
+
+ 
+</body>
+
+</html>

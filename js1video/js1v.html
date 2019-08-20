@@ -1,0 +1,114 @@
+<!doctype html>
+
+
+<!-- Learn-javascript-one-video      Derek Banas
+//        
+// http://www.newthinktank.com/2015/09/learn-javascript-one-video/
+// https://www.youtube.com/watch?v=fju9ii8YsGs
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="jstut.js"></script>                                         
+    <style type="text/css">
+       body {font-size: 1.6em;}
+      .hidden {display:none;}
+      .show {display:inline !important;}
+      button {
+        border: 2px solid black; background: #E5E4E2;
+        font-size: .5em; font-weight: bold; color: black;
+        padding: .8em 2em;
+        margin-top: .4em;
+      }
+    </style>
+ 
+  </head>
+  <body>
+   <p id="sayHello"></p>
+    <!--script src="v-code.js"></script-->
+    <!--script src="v-math.js"></script-->
+    <!--script src="v-str.js"></script-->
+	<!--script src="v-if.js"></script-->
+	<!--script src="v-arry.js"></script-->
+	<!--script src="v-fun.js"></script-->
+	
+
+<!-- ---------- CHANGING ELEMENTS & EVENT HANDLING ---------- -->
+<!-- All the events can be found here http://www.w3schools.com/jsref/dom_obj_event.asp -->
+ 
+<!-- Open alert on click -->
+<a href="JavaScript:void(0)" onClick="alert('Hello');">Say Hello</a><br />
+ 
+<!-- Call a function on click -->
+<a href="JavaScript:void(0)" onClick="openAlert('Hi how are you');">Say Something</a><br />
+ 
+<!-- Change text color on mouse rollover and roll out-->
+<a href="JavaScript:void(0)" onmouseover="this.style.color='red';"
+onmouseout="this.style.color='blue';"
+ondblclick="this.text='You Double Clicked Me'"
+onmousedown="this.text='Don\'t Press So hard'"
+onmouseup="this.text='Thank You'">Make me Red</a><br />
+ 
+<!-- Get value in an input element and open alert on change -->
+<input type="text" id="randInput"
+onChange="var dataEntered=document.getElementById('randInput').value; alert('User Typed ' + dataEntered);"><br /><br />
+ 
+<!-- When a user clicks a key provide info on the key clicked -->
+<form action="#" id="sampForm">
+<input id='charInput' type="text">
+<p id="keyData">Key Data Here</p>
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+</form><br /><br />
+ 
+<img src="ntt-logo.png" id="logo">
+<button id="logoButton">Get Logo</button><br />
+<input id='mouseInput' type="text" size="30"><br />
+ 
+Mouse X: <input type="text" id="mouseX"><br />
+Mouse Y: <input type="text" id="mouseY"><br />
+ 
+<button id="clearInputs">Clear Inputs</button><br />
+ 
+
+<script src="v-events.js"></script>
+
+
+
+<!-- ---------- ELEMENT STYLING ---------- -->
+<!-- See all of them here http://www.w3schools.com/jsref/dom_obj_style.asp -->
+ 
+<div id="sampDiv">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget turpis eget quam luctus malesuada ut ac nulla. Suspendisse fermentum magna neque, a auctor felis pretium eget. Fusce ornare feugiat magna, ut faucibus sapien congue ut. Nunc nec fringilla ex, nec varius nisl. Ut eget laoreet nisi. Aenean quis venenatis mauris, at volutpat ante. Donec sollicitudin lacinia ornare. In quis accumsan ligula, id egestas enim.
+</div>
+ 
+<button id="chgBkColor">Background Color</button>
+<button id="chgBkImg">Background Image</button>
+<button id="chgBorderStyle">Border Style</button>
+<button id="chgBorderWidth">Border Width</button>
+<button id="chgBorderColor">Border Color</button>
+
+<script src="v-style.js"></script>
+
+<!-- ---------- MANIPULATING THE DOM ---------- -->
+ 
+<div id="sampDiv2"><p>Loremipsumdolorsitamet,<em>consectetur adipiscing</em> elit. Proin eget turpis eget quam luctus malesuada ut ac nulla. Suspendisse fermentum magna neque, a auctor felis pretium eget. Fusce ornare feugiat magna, ut faucibus sapien congue ut. Nunc nec fringilla ex, nec varius nisl. Ut eget laoreet nisi. Aenean quis venenatis mauris, at volutpat ante. Donec sollicitudin lacinia ornare. In quis accumsan ligula, id egestas enim.</p><p>Lorem ipsum dolor sit amet,<b>consectetur adipiscing</b> elit. Proin eget turpis eget quam luctus malesuada ut ac nulla. Suspendisse fermentum magna neque, a auctor felis pretium eget. <em>Fusce ornare</em> feugiat magna, ut faucibus sapien congue ut. <b>Nunc nec fringilla</b> ex, nec varius nisl.</p></div>
+ 
+<img src="ntt-logo.png" id="logo2" alt="NTT Logo" height="180" width="180"><br />
+ 
+<button id="goToGoogle">Go to Google</button><br />
+ 
+<button id="forwardPage">Forward Page</button><br />
+ 
+<button id="backPage">Back Page</button><br />
+ 
+<button id="reload">Reload Page</button><br />
+ 
+<script src="v-dom.js"></script>
+
+
+  </body>
+
+
+</html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<!--
+https://www.youtube.com/watch?v=jsufTg2kGOI&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=5
+
+    https://github.com/hnasr/jsapi4x/blob/episode1/ig.html
+
+ -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ig5</title>
+	<script src = 'https://js.arcgis.com/4.4'></script>
+	<link rel = "stylesheet" href = "https://js.arcgis.com/4.4/esri/css/main.css">
+</head>
+<body>
+    Service: <select id = 'lstservices'></select><br>
+  <button id = 'satellite'> Satellite </button>
+   <div id = 'mapview' style = 'width:800px; height:600px'></div>
+
+
+ <script>
+ let   map,  mapview, layer;
+  require (["esri/Map",
+             "esri/views/MapView",
+             "esri/request",
+             "esri/layers/MapImageLayer",
+             "esri/widgets/Legend"
+             ],
+     function(Map, MapView, Request,MapLayer,Legend)
+	    {
+
+       map = new Map({basemap:"streets"});
+       let viewoptions = {
+                  container:"mapview",
+                  map:map,
+                  center:  [ -117.17835389687758,32.70487844555794],
+                  scale:10000
+                };
+       mapview = new MapView(viewoptions);
+       let legend = new Legend({view: mapview});
+       mapview.ui.add(legend, "bottom-left");
+
+      server6 = "https://sampleserver6";
+      server1 = "https://server";
+
+      url1 =server6 +".arcgisonline.com/arcgis/rest/services/";
+      service = "StoryMaps";//"NetworkAnalysis";// ;//"Reference/";
+      url0 = url1 +  service + "?f=json";
+
+
+
+ let options = {responseType: "json"};
+ Request(url0, options).
+   then (function(response){
+   let result = response.data;
+   console.log(result);
+   let lstservices = document.getElementById("lstservices");
+   lstservices.addEventListener("change",
+       function()
+       {
+          let selectedService = lstservices.options[
+             lstservices.selectedIndex].textContent;
+         layer = new MapLayer({url:
+                 "https://sampleserver6.arcgisonline.com/arcgis/rest/services/"+
+               selectedService +   "/MapServer"})
+        map.removeAll();
+        map.add(layer);
+        layer.then  ( () =>  {
+                       mapview.goTo(layer.fullExtent)
+                        } )
+
+       }//function
+    );// lstservices.addEventListener
+
+  for (let i = 0; i< result.services.length; i++)
+           {
+              //console.log(i,'  ', result.services[i].name);
+              let option = document.createElement("option");
+             option.textContent = result.services[i].name;
+            //if (DEFAULT_SERVICE == result.services[i].name) option.selected=true;
+            lstservices.appendChild(option);
+
+           }
+         })
+       }//function
+    );//require
+    document.getElementById('satellite').addEventListener("click",
+     function(){
+      mapview.map = map;
+     }
+  )
+ </script>
+</body>
+</html>

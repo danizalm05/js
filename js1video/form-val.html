@@ -1,0 +1,88 @@
+<!doctype html>
+
+
+<!-- Learn-javascript-one-video      Derek Banas
+//        
+// http://www.newthinktank.com/2015/09/learn-javascript-one-video/
+// https://www.youtube.com/watch?v=fju9ii8YsGs
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="jstut.js"></script>                                         
+    <style type="text/css">
+       body {font-size: 1.6em;}
+      .hidden {display:none;}
+      .show {display:inline !important;}
+      button {
+        border: 2px solid black; background: #E5E4E2;
+        font-size: .5em; font-weight: bold; color: black;
+        padding: .8em 2em;
+        margin-top: .4em;
+      }
+    </style>
+ 
+  </head>
+  <body>
+   <p id="sayHello"></p>
+   
+   <div>
+Enter your name:
+ 
+<!-- When they leave the input send a reference to the input element, and a reference to the hel error span -->
+<input id="name" name="name" type="text" size="30" onblur="isTheFieldEmpty(this, document.getElementById('name_help'))" />
+<span id="name_help"></span>
+<!-- this is the id number for the text box -->
+</div>
+ 
+<div>
+Enter your street address:
+<input id="street" name="street" type="text" size="30" onblur="isAddressOk(this, document.getElementById('street_help'))" />
+<span id="street_help"></span>
+</div>
+ 
+<div>
+Enter your city:
+<input id="city" name="city" type="text" size="30" onblur="isTheFieldEmpty(this, document.getElementById('city_help'))" />
+<span id="city_help"></span>
+</div>
+ 
+<div>
+Enter your state code:
+<input id="state" name="state" type="text" size="2" onblur="isStateOk(this, document.getElementById('state_help'))" />
+<span id="state_help"></span>
+</div>
+ 
+<div>
+Enter your phone number:
+<input id="phone" name="phone" type="text" size="15"
+onblur="isPhoneOk(this, document.getElementById('phone_help'))" />
+<span id="phone_help"></span>
+</div>
+ 
+<div>
+Enter your email:
+<input id="email" name="email" type="text" size="30" onblur="isEmailOk(this, document.getElementById('email_help'))" />
+<span id="email_help"></span>
+</div>
+   
+   
+   
+   
+   
+   
+    <script src="v-form.js"> </script>
+     
+ 
+<!--  http://www.w3schools.com/jsref/  -->
+  
+   
+ 
+ 
+
+
+  </body>
+
+
+</html>

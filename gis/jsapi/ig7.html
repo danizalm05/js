@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<!--
+https://www.youtube.com/watch?reload=9&v=xhTyoPmY7O0&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=7
+https://www.youtube.com/watch?v=qsBnbO4nZf8&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=8
+https://github.com/hnasr/jsapi4x/blob/episode9/ig.html
+https://sampleserver6.arcgisonline.com/arcgis/rest/services/
+
+<button id = 'satellite'>satellite</button>
+document.getElementById("satellite").addEventListener("click",
+  function(e){
+    console.log(e.target.textContent)
+ map.basemap = e.target.textContent;
+
+})
+
+42:00
+
+
+ -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ig7</title>
+	<script src = 'https://js.arcgis.com/4.4'></script>
+	<link rel = "stylesheet" href = "https://js.arcgis.com/4.4/esri/css/main.css">
+</head>
+<body>
+    Service: <select id = 'lstservices'></select><br>
+
+   <div id = 'mapview' style = 'width:1100px; height:600px'></div>
+    <div id ='toc' ></div>
+  <div id ='buttons' ></div>
+
+ <script>
+
+ let   map,  mapview, layer, basemaps =[];
+
+ basemaps.push ("satellite");
+ basemaps.push ("topo");
+ basemaps.push ("osm");
+ basemaps.push ("hybrid");
+	basemaps.push ("terrain");
+	basemaps.push ("dark-gray");
+	basemaps.push ("national-geographic");
+	basemaps.push ("oceans");
+	basemaps.push ("streets-night-vector");
+ //let setBasemap = function (e) { map.basemap = e.target.id }
+ let setBasemap = e => map.basemap = e.target.id;
+
+ let buttons = document.getElementById("buttons");
+ for (let i = 0; i < basemaps.length; i ++)
+ 	{
+
+ 		let button = document.createElement("button");
+ 		button.id = basemaps[i];
+ 	  button.textContent = basemaps[i];
+ 	  button.addEventListener("click", setBasemap)
+ 		buttons.appendChild(button);
+ 	}
+  require (["esri/Map",
+             "esri/views/MapView",
+             "esri/request",
+             "esri/layers/MapImageLayer",
+             "esri/widgets/Legend"
+             ],
+     function(Map, MapView, Request,MapLayer,Legend)
+	    {
+
+       map = new Map({basemap:"streets"});
+       let viewoptions = {
+                  container:"mapview",
+                  map:map,
+                  center:  [ -117.17835389687758,32.70487844555794],
+                  scale:10000
+                };
+       mapview = new MapView(viewoptions);
+       let legend = new Legend({view: mapview});
+       mapview.ui.add(legend, "bottom-left");
+
+      server6 = "https://sampleserver6";
+      server1 = "https://server";
+
+      let url1 =server6 +".arcgisonline.com/arcgis/rest/services/";
+      service = "";//"StoryMaps";//"NetworkAnalysis";// ;//"Reference/";
+      url0 = url1 +  service + "?f=json";
+
+/*
+map.layers.length: number of layers
+map.layers.items[0].title:name of the upper  layer
+map.layers.items[0].sublayers.length:nuber of sublayers in this layer
+map.layers.items[0].sublayers.items[0].title
+map.layers.items[0].findSublayerById(0).title: sublayer with ID=0
+map.layers.items[0].findSublayerById(0).visible=false: hide layer*/
+
+ let options = {responseType: "json"};
+ Request(url0, options).
+   then (function(response){
+   let result = response.data;
+
+   let lstservices = document.getElementById("lstservices");
+   lstservices.addEventListener("change",
+    function()
+     {
+      let selectedService = lstservices.options[
+             lstservices.selectedIndex].textContent;
+      layer = new MapLayer({url:url1  + selectedService
+                   +   "/MapServer"})
+      map.removeAll();
+      map.add(layer);
+      layer.then( () =>
+       {
+        let toc = document.getElementById("toc");
+        toc.innerHTML = "";
+        for(let i = 0;i < layer.sublayers.length; i++ ){
+               //<input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+             let sublayer = layer.sublayers.items[i];
+             let chk = document.createElement("input");
+             chk.type = "checkbox";
+             chk.value = sublayer.id;
+             chk.checked = sublayer.visible;
+             chk.addEventListener("click", function(e)
+         			{
+         			  let clickedlayer =
+                         layer.findSublayerById(Number(e.target.value));
+                //console.log(clickedlayer.title);
+                clickedlayer.visible=e.target.checked
+         			})
+
+
+             let lbl = document.createElement("label");
+             lbl.textContent = sublayer.title;
+
+             toc.appendChild(chk);
+             toc.appendChild(lbl);
+         }
+            mapview.goTo(layer.fullExtent);
+          } )
+
+       }//function
+    );// lstservices.addEventListener
+
+  for (let i = 0; i< result.services.length; i++)
+           {
+              //console.log(i,'  ', result.services[i].name);
+              let option = document.createElement("option");
+             option.textContent = result.services[i].name;
+            //if (DEFAULT_SERVICE == result.services[i].name) option.selected=true;
+            lstservices.appendChild(option);
+
+           }
+         })
+       }//function
+    );//require
+
+
+ </script>
+</body>
+</html>

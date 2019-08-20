@@ -1,0 +1,22 @@
+{
+  "name": "crash",
+  "version": "1.0.0",
+  "description": "node  crash  coursh",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "btall",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+<<<<<<< HEAD
+    "nodemon": "^1.18.11"
+=======
+    "nodemon": "^1.19.0"
+>>>>>>> 177ba47d5030c4a9c5bf227cf51c6e7fbb72291a
+  }
+}

@@ -1,0 +1,47 @@
+Selecting Element’s with JQuery
+
+You would place the following, inside of the JQuery selection tag’s $(). If some of these don’t make sense I’ll provide further example’s below.
+
+    * : Matches any element
+    x : Matches all elements with the tag named x
+    x y : Matches all children elements with the tag y, that lie in the element x
+    x > y : Matches all children elements with the tag y, that are direct children of element x
+    x + y : Matches all elements of tag y, that are immediately preceded by  sibling x
+    x~y   : Matches all elements of tag y, that are preceded by sibling x
+    x:has(y) : Matches all elements of tag x, that contain an element of type y
+    x.y : Matches all elements of type x, that have a class name of y
+    x#y : Matches all elements of type x, with an id of type y
+    x[y] : Matches all elements of type x, with an attribute y, that can have any value
+    x[y=z] : Matches all elements of type x, with an attribute of type y, that have the value assigned to z
+    x[y^=z] : Matches all elements of type x, with an attribute of type y, that begins with the value assigned to z
+    x[y$=z] : Matches all elements of type x, with an attribute of type y, that ends with the value assigned to z
+    x[y*=z] : Matches all elements of type x, with an attribute of type y, that contains the value assigned to z
+    x:contains(text) : Matches all elements of type x, that contain the text string entered
+
+Selecting Element’s Based on Position on the Webpage
+
+    x:first : Returns the first element of type x
+    x:last : Returns the last element of the type x
+    x:first-child : Returns the first child contained in the element x
+    x:last-child : Returns the last child contained in the element x
+    x:nth-child(y) : Returns the y child of the element x. y could also be a mathematical formula, that has a number as a result.
+    x:nth-child(even|odd) : Returns all even or odd elements of the element x
+    x:eq(y) : Returns the y element with the tag x, on the web page
+    x:gt(y) : Returns all element’s that lie after y on the page
+    x:lt(y) :  Returns all element’s that lie before y on the page
+
+Selecting Form Elements
+
+    x:animated : Returns element’s that are animated
+    x:button : Returns element’s that are buttons
+    x:checkbox : Returns element’s that are checkboxs
+    x:checked : Returns element’s that are checked
+    x:header : Returns element’s that are headers ex. <h1>, <h2>, etc.
+    x:hidden : Returns element’s that are hidden
+    x:image : Returns element’s that are images
+    x:input : Returns element’s that are form elements
+    x:parent : Returns element’s that have children elements
+    x:password : Returns element’s that are of type password
+    x:radio : Returns element’s that are radio buttons
+    x:selected : Returns element’s that are selected
+    x:text : Returns element’s that are of type text

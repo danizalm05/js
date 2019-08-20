@@ -1,0 +1,49 @@
+ body{
+  font-family: Tahoma;
+  font-size: 20px;
+  text-align: center;
+}
+
+h1{
+  font-weight: bold;
+  font-style: italic;
+}
+
+.bingoBoard {
+    margin: 0 auto;
+   
+   color: green;
+}
+
+.bingoBoard tr th, .bingoBoard tr td{
+  padding: 10px;
+}
+
+.bingoBoard tr th {
+    background: green;
+    border: 0;
+    line-height: 100%;
+    padding-top: 0;
+    font-family: Arial;
+    font-size: 36px;
+}
+
+.bingoBoard tr td {
+    background: blue;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+    text-align: center;
+    color: orange;
+}
+.bingoBoard tr td div{
+	cursor:pointer;
+}
+.bingoBoard td.selected {
+    color: #FFFF00;
+    background: #000;
+}
+
+.bingoBoard td.completedRow, .bingoBoard tr td.completedColumn {
+    background: #FF3300;
+}

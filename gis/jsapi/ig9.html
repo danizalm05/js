@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+https://www.youtube.com/watch?v=2vKxsw6DiSs&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=9
+https://github.com/hnasr/jsapi4x/blob/episode9/ig.html
+https://sampleserver6.arcgisonline.com/arcgis/rest/services/
+
+<button id = 'satellite'>satellite</button>
+document.getElementById("satellite").addEventListener("click",
+	function(e){
+		console.log(e.target.textContent)
+ map.basemap = e.target.textContent;
+
+})
+
+26:00
+/*
+map.layers.length: number of layers
+map.layers.items[0].title:name of the upper  layer
+map.layers.items[0].sublayers.length:nuber of sublayers in this layer
+map.layers.items[0].sublayers.items[0].title
+map.layers.items[0].findSublayerById(0).title: sublayer with ID=0
+map.layers.items[0].findSublayerById(0).visible=false: hide layer*/
+
+ -->
+<html>
+<head>
+		<meta charset="utf-8" />
+		<title>Ig9a</title>
+ <script src = 'https://js.arcgis.com/4.4'></script>
+ <link rel = "stylesheet" href = "https://js.arcgis.com/4.4/esri/css/main.css">
+</head>
+<body>
+		Service: <select id = 'lstservices'></select><br>
+ <table>
+	  <tr>
+			<td valign =top>
+ 		    <div id ='toc' >
+ 		    	 <ul>
+					 
+					 </ul>
+ 		    </div>
+    	</td>
+      <td>
+	       <div id = 'mapview' style = 'width:1100px; height:600px'>Map Here</div>
+      </td>
+
+	</tr>
+</table>
+	<div id ='buttons' ></div>
+
+ <script>
+
+ let   map,  mapview, layer ;
+  server6 = "https://sampleserver6";
+	server1 = "https://server";
+
+	let url1 =server6 +".arcgisonline.com/arcgis/rest/services/";
+	service = "";//"StoryMaps";//"NetworkAnalysis";// ;//"Reference/";
+	let url0 = url1 +  service + "?f=json";
+
+
+	require (["esri/Map",
+						 "esri/views/MapView",
+						 "esri/request",
+						 "esri/layers/MapImageLayer",
+						 "esri/widgets/Legend"
+						 ],
+		 function(Map, MapView, Request,MapLayer,Legend)
+		 {
+       generateBasemaps();
+			 map = new Map({basemap:"streets"});
+			 let viewoptions = {
+									container:"mapview",
+									map:map,
+									center:  [ -117.17835389687758,32.70487844555794],
+									scale:10000
+								};
+			 mapview = new MapView(viewoptions);
+			 let legend = new Legend({view: mapview});
+			 mapview.ui.add(legend, "bottom-left");
+
+ let options = {responseType: "json"};
+
+ Request(url0, options).then (populateMapServices )
+
+
+ function populateMapServices(response){
+	 let result = response.data;
+
+	 let lstservices = document.getElementById("lstservices");
+	  //Set    event   listener
+	 lstservices.addEventListener("change",onChangeServiceMap);
+
+	 for (let i = 0; i< result.services.length; i++)
+	 				{
+	 	     let option = document.createElement("option");
+	 		  	option.textContent = result.services[i].name;
+	 				 //if (DEFAULT_SERVICE == result.services[i].name) option.selected=true;
+					 if (i==31) option.selected=true;
+	 		  lstservices.appendChild(option);
+	 	 }
+ }//populateMapServices
+
+ function onChangeServiceMap(){
+
+	let selectedService = lstservices.options[
+				 lstservices.selectedIndex].textContent;
+  //Add layer
+	layer = new MapLayer({url:url1  + selectedService
+							 +   "/MapServer"})
+	map.removeAll();
+	map.add(layer);
+                 //wait until  layer  is  loaded
+	layer.then( () =>
+			 {
+			  	let toc = document.getElementById("toc");
+				  toc.innerHTML = "";
+					let layerlist = document.createElement("ul");
+					toc.appendChild(layerlist);
+				 	//Populate layers in list
+          populateLayer(layer,layerlist);
+        	mapview.goTo(layer.fullExtent);
+			 } )
+   }//	onChangeServiceMap
+
+  }//function
+);//require
+
+ function populateLayer(thislayer,layerlist)
+  	 {
+		  for(let i = 0;i < thislayer.sublayers.length; i++ ){
+			 		let sublayer = thislayer.sublayers.items[i];
+					let chk = document.createElement("input");
+					chk.type = "checkbox";
+					chk.value = sublayer.id;
+					chk.checked = sublayer.visible;
+					chk.addEventListener("click", function(e)
+						{
+							let clickedlayer =
+										thislayer.findSublayerById(Number(e.target.value));
+
+						  clickedlayer.visible=e.target.checked
+						})
+					let lbl = document.createElement("label");
+					lbl.textContent = sublayer.title;
+					let layeritem = document.createElement("li");
+	      	layeritem.appendChild(chk);
+			  	layeritem.appendChild(lbl);
+			  	layerlist.appendChild(layeritem);
+			}
+	 }//populateLayer
+
+
+		function generateBasemaps()
+		{
+
+			let basemaps =[];
+
+			basemaps.push ("satellite");
+			basemaps.push ("topo");
+			basemaps.push ("osm");
+			basemaps.push ("hybrid");
+			basemaps.push ("terrain");
+			basemaps.push ("dark-gray");
+			basemaps.push ("national-geographic");
+			basemaps.push ("oceans");
+			basemaps.push ("streets-night-vector");
+			//let setBasemap = function (e) { map.basemap = e.target.id }
+
+			let setBasemap = e => map.basemap = e.target.id;
+
+			let buttons = document.getElementById("buttons");
+			for (let i = 0; i < basemaps.length; i ++)
+			 {
+
+				 let button = document.createElement("button");
+				 button.id = basemaps[i];
+				 button.textContent = basemaps[i];
+				 button.addEventListener("click", setBasemap)
+				 buttons.appendChild(button);
+			 }
+		}//generateBasemaps
+
+ </script>
+</body>
+</html>
