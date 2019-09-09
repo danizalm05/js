@@ -1,9 +1,35 @@
+<!--  26:10
+https://www.youtube.com/watch?v=GxVkS0nwxqY&list=PLQnljOFTspQUppK8iiIuoQJTAj436IWQz&index=11
+https://github.com/hnasr/jsapi4x/blob/episode9/ig.html
+https://sampleserver6.arcgisonline.com/arcgis/rest/services/ 
+https://sampleserver6.arcgisonline.com/arcgis/rest/services/Military/MapServer
+
+
+
+<button id = 'satellite'>satellite</button>
+document.getElementById("satellite").addEventListener("click",
+	function(e){
+		console.log(e.target.textContent)
+ map.basemap = e.target.textContent;
+
+})
+ map.layers.length: number of layers
+map.layers.items[0].title:name of the upper  layer
+map.layers.items[0].sublayers.length:nuber of sublayers in this layer
+map.layers.items[0].sublayers.items[0].title
+map.layers.items[0].findSublayerById(0).title: sublayer with ID=0
+map.layers.items[0].findSublayerById(0).visible=false: hide layer
+  -->
+
+
+
+
 
 <!DOCTYPE html>
 <html>
 <head>
 		<meta charset="utf-8" />
-	<title>IG10</title>
+	<title>IG11</title>
 	<script src = 'https://js.arcgis.com/4.4'></script>
 	<link rel = "stylesheet" href = "https://js.arcgis.com/4.4/esri/css/main.css">
 </head>
@@ -26,8 +52,10 @@
 <div id = 'buttons'></div>
 
 <script>
-
+ let  r;
  let   map,  mapview, layer ;
+ let Request,selectedService;
+ 
  server6 = "https://sampleserver6";
  server1 = "https://server";
 
@@ -35,30 +63,36 @@
  service = "";//"StoryMaps";//"NetworkAnalysis";// ;//"Reference/";
  let url0 = url1 +  service + "?f=json";
 
-require (["esri/Map",
-		 "esri/views/MapView",
-		 "esri/request",
-		 "esri/layers/MapImageLayer",
-		 "esri/widgets/Legend"],
-		function(Map,
-			MapView,
-			Request,
-			MapLayer,
-			Legend)
+require (
+     ["esri/Map",
+	 "esri/views/MapView",
+	 "esri/request",
+	 "esri/layers/MapImageLayer",
+	 "esri/widgets/Legend"],
+	function(
+	    Map,
+		MapView,
+		esriRequest,
+		MapLayer,
+		Legend)
 		{
-			 generateBasemaps();
-			 map = new Map({basemap:"streets"})
-			 let viewoptions = {container: "mapview", map: map,
-			 center: [-117.1616394868625, 32.7127455035969], scale: 10000}
-		     mapview = new MapView(viewoptions);
+		 Request = esriRequest;
+		 generateBasemaps();
+		 map = new Map({basemap:"streets"})
+		 let viewoptions = {container: "mapview", map: map,
+		 center: [-117.1616394868625, 32.7127455035969], scale: 10000}
+	     mapview = new MapView(viewoptions);
 
-		     let legend = new Legend({view: mapview});
-		     mapview.ui.add(legend, "bottom-left");
-		     //let url = "https://sampleserver6.arcgisonline.com/arcgis/rest/services?f=json";
-		     let options = {responseType: "json"};
+	     let legend = new Legend({view: mapview});
+	     mapview.ui.add(legend, "bottom-left");
 
-			    Request(url0, options).then (populateMapServices );
-				 //populate the drop downlist of mapservices
+	  let options = {responseType: "json"};
+      //getCount(9);//  Areas (9) layerid = 9 
+	  // getCount(3)           // layerid = 3    C2 Military Operations Point (3) 
+	  Request(url0, options).then (populateMapServices );
+
+
+	//populate the drop downlist of mapservices
 		    function populateMapServices (response){
 		     	let result = response.data;
 		     	let lstservices = document.getElementById("lstservices");
@@ -74,7 +108,7 @@ require (["esri/Map",
 		     }
 			function onChangeServiceMap()
 			{
-				let selectedService = lstservices.options[lstservices.selectedIndex].textContent;
+				 selectedService = lstservices.options[lstservices.selectedIndex].textContent;
 					//add layer
 				layer = new MapLayer({url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/" + selectedService + "/MapServer"})
 				map.removeAll();
@@ -121,6 +155,22 @@ function populateLayer(thislayer, layerlist)
 	}
 }
 
+
+function getCount(layerid){
+////////////////////////////////////////////
+	let queryurl = url1+ selectedService +"/MapServer/"+ layerid +"/query";
+	let queryOptions = {
+						responseType: "json",
+			query: {
+							f: "json",
+					where:"1=1",
+						returnCountOnly:true
+			}
+			};
+	 	
+	Request(queryurl,queryOptions).then(response=> alert(response.data.count));
+
+}//getCount
 //Populate layer subitems in the input element
 function populateLayerRecursive(thislayer, layerlist)
 {
@@ -130,18 +180,24 @@ function populateLayerRecursive(thislayer, layerlist)
 	chk.value = thislayer.id;
 	chk.checked = thislayer.visible;
 
-	chk.addEventListener("click", function(e)
-		{
-		  //let clickedlayer = thislayer.findSublayerById(Number(e.target.value));
-		  thislayer.visible=e.target.checked
-		})
-
+	chk.addEventListener("click",
+		  e =>thislayer.visible=e.target.checked );
+    let btn = document.createElement ("button");
+	btn.textContent = "Count";
+	 
+	btn.addEventListener("click",e=> getCount(thislayer.id));
+	
 	let lbl = document.createElement("label");
 	lbl.textContent = thislayer.title;
 	let layeritem = document.createElement("li");
-	layeritem.appendChild(chk);
+	
 	layeritem.appendChild(lbl);
+	layeritem.appendChild(chk);
+	layerlist.appendChild(btn);
+	
 	layerlist.appendChild(layeritem);
+	
+	
 	if (thislayer.sublayers != null && thislayer.sublayers.items.length > 0)
 	{
 		 let newlist = document.createElement("ul");
