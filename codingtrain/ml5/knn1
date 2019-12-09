@@ -1,0 +1,59 @@
+//ml5.js  knn
+//code:https://github.com/CodingTrain/website/tree/master/Courses/beginner_ml5/07_knn_classifier/P5
+ //https://www.youtube.com/watch?v=KTNqXwkLuM4
+
+// https://observablehq.com/@nsthorat/how-to-build-a-teachable-machine-with-tensorflow-js
+// 12:00
+// KNN Classification with Feature Extractor
+// 1: https://youtu.be/KTNqXwkLuM4
+// 2: https://youtu.be/Mwo5_bUVhlA
+// 3: https://youtu.be/JWsKay58Z2g
+
+let video;
+let features;
+let knn;
+let labelP;
+let ready = false;
+let x;
+let y;
+let label = 'nothing';
+
+
+
+let prob;
+
+
+function gotResults(error, results) {
+  console.log("Inside gotResults function");
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(results);
+
+  }
+}//gotResults
+
+
+
+function setup() {
+  createCanvas(320, 240);
+  video = createCapture(VIDEO);
+  video.size(320, 240);
+  video.hide();
+  features = ml5.featureExtractor('MobileNet', modelReady);
+}//setup
+
+function mousePressed(){
+  const logits = features.infer(video);
+  logits.print();
+  console.log(logits.dataSync());
+
+}
+
+function modelReady() {
+  console.log('Model is ready!!!');
+}
+
+function draw(){
+   image(video,0,0);
+}//draw
