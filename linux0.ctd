@@ -16,7 +16,7 @@
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="True" name="Zero to Hero" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575290251.81" ts_lastsave="1575365084.68" unique_id="1">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name=" Episode 1 " prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575290273.38" ts_lastsave="1575899117.3" unique_id="2">
+		<node custom_icon_id="0" foreground="" is_bold="False" name=" Episode 1 " prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575290273.38" ts_lastsave="1576158911.72" unique_id="2">
 			<rich_text scale="h3"> </rich_text>
 			<rich_text> </rich_text>
 			<rich_text link="webs https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj">https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj</rich_text>
@@ -74,15 +74,29 @@
 			<rich_text underline="single" weight="heavy"> ipsweep.sh</rich_text>
 			<rich_text>
  
-#!/bin/bash        
-for ip in  `seq 1 254`; do
-ping  -c  1 $1.$ip |    grep &quot;64 bytes&quot;   | cut -d &quot; &quot; -f 4 | tr -d &quot;:&quot;    &amp;
-done 
-
-# Calling the  script:       ./ipsweep.sh 127.0.0        #    $1 is the input ip = 127.0.0 
-# This script will  scan ip from  127.0.0.1 to  127.0.0.255 
+#!/bin/bash
+if [&quot;$1&quot; == &quot;&quot;]
+then
+echo &quot;Missing Ip Address&quot;
+echo &quot;Syntax: ./ipsweep.sh &lt;ip address&gt; &quot;
+else
+for ip in `seq 1 254`; do
+ping -c 1 $1.$ip | grep &quot;64 bytes&quot; | cut -d &quot; &quot; -f 4 | tr -d &quot;:&quot; &amp;
+done
+fi
+# Calling the script: ./ipsweep.sh 127.0.0 #  $1 is the input ip = 127.0.0
+# To output to a file:  ./ipsweep.sh 127.0.0 &gt; iplist.txt
+# This script will scan ip from 127.0.0.1 to 127.0.0.255
 # The ‘&amp;’ sign will do the scanning for all ip togther. without it will be done sepratly for every ip
- 1:35:00</rich_text>
+1:38:00
+Print content of file iplist.txt
+      for ip in $(cat iplist.txt); do echo $ip; done
+Runing nmap for every ip in file iplist.txt
+      for ip in $(cat ip.list); do nmap P80 -T4 $ip; done
+  
+
+     
+ </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="network commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575305605.21" ts_lastsave="1575306482.24" unique_id="3">
 				<rich_text>ifconfig:
 iwconfig:
@@ -123,6 +137,9 @@ route:  Kernel IP   routing</rich_text>
  
  
  </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1576158911.72" ts_lastsave="1576158939.23" unique_id="7">
+				<rich_text>1:42:50</rich_text>
 			</node>
 		</node>
 	</node>
