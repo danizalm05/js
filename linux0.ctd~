@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="True" name="python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575365084.68" ts_lastsave="1575365112.72" unique_id="6">
+		<rich_text></rich_text>
+		<node custom_icon_id="3" foreground="#ff0000" is_bold="True" name="Python Server" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575364918.64" ts_lastsave="1575634697.27" unique_id="5">
+			<rich_text> python HTTPServer
+ 1. Move to the Dir of  your project.
+ 2. Type in Terminal:
+        python -m SimpleHTTPServer
+    Or if you are using Python 3, type:
+        python -m http.server
+ 3. visit </rich_text>
+			<rich_text link="webs http://localhost:8000">http://localhost:8000</rich_text>
+			<rich_text> on your browser.</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="True" name="Zero to Hero" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575290251.81" ts_lastsave="1575365084.68" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name=" Episode 1 " prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575290273.38" ts_lastsave="1576158911.72" unique_id="2">
+			<rich_text scale="h3"> </rich_text>
+			<rich_text> </rich_text>
+			<rich_text link="webs https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj">https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj</rich_text>
+			<rich_text>
+ 
+</rich_text>
+			<rich_text scale="h1">impacket </rich_text>
+			<rich_text>: collection of Python classes for working with network protocols. 
+ </rich_text>
+			<rich_text link="webs https://github.com/SecureAuthCorp/impacket">https://github.com/SecureAuthCorp/impacket</rich_text>
+			<rich_text>
+ 
+</rich_text>
+			<rich_text underline="single" weight="heavy"> install impacket</rich_text>
+			<rich_text>   1:16
+ 1.  sudo apt purge *impacket* :  uninstall
+ 2.  cd /opt 
+ 3.  sudo git  clone </rich_text>
+			<rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text>
+			<rich_text>
+ 4.  cd /impacket
+ 5. run ‘ sudo </rich_text>
+			<rich_text family="monospace">pip install .</rich_text>
+			<rich_text>  ’  from the directory where you placed it
+ 
+</rich_text>
+			<rich_text scale="h3"> </rich_text>
+			<rich_text scale="h3" underline="single">starting  service </rich_text>
+			<rich_text> 1:20
+ 1.  sudo service apache2 start : Starting webserver(127.0.0.1)
+      service apache2 stop : Stopping web server apache2     
+ 2.  sudo service ssh start
+ 3.  sudo service postgresql start : Starting PostgreSQL  database server
+
+
+</rich_text>
+			<rich_text scale="h3" underline="single">enable/disable services in  Systemd init</rich_text>
+			<rich_text> 1:21:05
+  </rich_text>
+			<rich_text family="monospace">sudo dpkg -l | grep systemd</rich_text>
+			<rich_text>: check if systemd package is   
+   systemctl enable    apache2: </rich_text>
+			<rich_text background="#dda0225f225f"> Problem    commmand not found</rich_text>
+			<rich_text>
+
+1:23
+</rich_text>
+			<rich_text foreground="#e7ca56701706" scale="h3" underline="single" weight="heavy">Creating scripts that cut the ip from succesfull ping commad</rich_text>
+			<rich_text>:
+
+1. Store output of ping in “ip.txt” :  ping -c 1  127.0.0.1 &gt; ip.txt
+2. Pull address in sucssefull result:   cat ip.txt | grep &quot;64 bytes&quot; | cut -d &quot; &quot; -f 4 | tr -d &quot;:&quot;
+      If command failes noting will be returned.   1:28:16
+3.The script   </rich_text>
+			<rich_text underline="single" weight="heavy"> ipsweep.sh</rich_text>
+			<rich_text>
+ 
+#!/bin/bash
+if [&quot;$1&quot; == &quot;&quot;]
+then
+echo &quot;Missing Ip Address&quot;
+echo &quot;Syntax: ./ipsweep.sh &lt;ip address&gt; &quot;
+else
+for ip in `seq 1 254`; do
+ping -c 1 $1.$ip | grep &quot;64 bytes&quot; | cut -d &quot; &quot; -f 4 | tr -d &quot;:&quot; &amp;
+done
+fi
+# Calling the script: ./ipsweep.sh 127.0.0 #  $1 is the input ip = 127.0.0
+# To output to a file:  ./ipsweep.sh 127.0.0 &gt; iplist.txt
+# This script will scan ip from 127.0.0.1 to 127.0.0.255
+# The ‘&amp;’ sign will do the scanning for all ip togther. without it will be done sepratly for every ip
+1:38:00
+Print content of file iplist.txt
+      for ip in $(cat iplist.txt); do echo $ip; done
+Runing nmap for every ip in file iplist.txt
+      for ip in $(cat ip.list); do nmap P80 -T4 $ip; done
+  
+
+     
+ </rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="network commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575305605.21" ts_lastsave="1575306482.24" unique_id="3">
+				<rich_text>ifconfig:
+iwconfig:
+ping:
+arp -a:
+netstat -ano:     Active Internet connections (servers and established)
+route:  Kernel IP   routing</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="file system" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1575306073.4" ts_lastsave="1575569689.9" unique_id="4">
+				<rich_text>cmd - current directory
+ cd Desktop/ - move to desktop directory
+ mkdir  &lt;dir name&gt;  - create  directory
+1.   rmdir  &lt;dir name&gt;  - remove directory
+2.   cherrytree - 
+3.   man 
+4.   echo “Hello” &gt; new.txt - Print ‘hello’ in the ‘new.txt’  file
+5.   rm   new.txt - delete ‘new.txt’  file
+6.   mv &lt;file&gt;  &lt;destinatio&gt;
+7.   locate &lt;file&gt; - locate a file
+8.   update
+9.   chmod +x &lt;file&gt;
+10.  cat  /etc/passwd
+11.  cat  /etc/shadow - show content of shadow file
+12.  su &lt;user name&gt;  -  Switch to anoter user
+13.  history:  list history  of commands
+            history | grep ping
+14.  cat 
+15.  touch &lt;file name &gt;: Create  file 
+ 
+17.  sudo apt purge *impacket* :  uninstall
+18. cd /opt 
+19. sudo git  clone </rich_text>
+				<rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text>
+				<rich_text>
+
+ 
+
+ 
+ 
+ </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1576158911.72" ts_lastsave="1576158939.23" unique_id="7">
+				<rich_text>1:42:50</rich_text>
+			</node>
+		</node>
+	</node>
+</cherrytree>
