@@ -1,39 +1,78 @@
-<?xml version="1.0" ?><cherrytree><node name="python" prog_lang="custom-colors" readonly="False" tags="" unique_id="6"><rich_text></rich_text><node name="Python Server" prog_lang="custom-colors" readonly="False" tags="" unique_id="5"><rich_text> python HTTPServer
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="6">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Python Server" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="5">
+			<rich_text> python HTTPServer
  1. Move to the Dir of  your project.
  2. Type in Terminal:
         python -m SimpleHTTPServer
     Or if you are using Python 3, type:
         python -m http.server
- 3. visit </rich_text><rich_text link="webs http://localhost:8000">http://localhost:8000</rich_text><rich_text> on your browser.</rich_text></node></node><node name="Zero to Hero" prog_lang="custom-colors" readonly="False" tags="" unique_id="1"><rich_text></rich_text><node name=" Episode 1 " prog_lang="custom-colors" readonly="False" tags="" unique_id="2"><rich_text scale="h3"> </rich_text><rich_text> </rich_text><rich_text link="webs https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj">https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj</rich_text><rich_text>
+ 3. visit </rich_text>
+			<rich_text link="webs http://localhost:8000">http://localhost:8000</rich_text>
+			<rich_text> on your browser.</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Zero to Hero" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name=" Episode 1 " prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="2">
+			<rich_text scale="h3"> </rich_text>
+			<rich_text> </rich_text>
+			<rich_text link="webs https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj">https://www.youtube.com/watch?v=qlK174d_uu8&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj</rich_text>
+			<rich_text>
  
-</rich_text><rich_text scale="h1">impacket </rich_text><rich_text>: collection of Python classes for working with network protocols. 
- </rich_text><rich_text link="webs https://github.com/SecureAuthCorp/impacket">https://github.com/SecureAuthCorp/impacket</rich_text><rich_text>
+</rich_text>
+			<rich_text scale="h1">impacket </rich_text>
+			<rich_text>: collection of Python classes for working with network protocols. 
+ </rich_text>
+			<rich_text link="webs https://github.com/SecureAuthCorp/impacket">https://github.com/SecureAuthCorp/impacket</rich_text>
+			<rich_text>
  
-</rich_text><rich_text underline="single" weight="heavy"> install impacket</rich_text><rich_text>   1:16
+</rich_text>
+			<rich_text underline="single" weight="heavy"> install impacket</rich_text>
+			<rich_text>   1:16
  1.  sudo apt purge *impacket* :  uninstall
  2.  cd /opt 
- 3.  sudo git  clone </rich_text><rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text><rich_text>
+ 3.  sudo git  clone </rich_text>
+			<rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text>
+			<rich_text>
  4.  cd /impacket
- 5. run ‘ sudo </rich_text><rich_text family="monospace">pip install .</rich_text><rich_text>  ’  from the directory where you placed it
+ 5. run ‘ sudo </rich_text>
+			<rich_text family="monospace">pip install .</rich_text>
+			<rich_text>  ’  from the directory where you placed it
  
-</rich_text><rich_text scale="h3"> </rich_text><rich_text scale="h3" underline="single">starting  service </rich_text><rich_text> 1:20
+</rich_text>
+			<rich_text scale="h3"> </rich_text>
+			<rich_text scale="h3" underline="single">starting  service </rich_text>
+			<rich_text> 1:20
  1.  sudo service apache2 start : Starting webserver(127.0.0.1)
       service apache2 stop : Stopping web server apache2     
  2.  sudo service ssh start
  3.  sudo service postgresql start : Starting PostgreSQL  database server
 
 
-</rich_text><rich_text scale="h3" underline="single">enable/disable services in  Systemd init</rich_text><rich_text> 1:21:05
-  </rich_text><rich_text family="monospace">sudo dpkg -l | grep systemd</rich_text><rich_text>: check if systemd package is   
-   systemctl enable    apache2: </rich_text><rich_text background="#dda0225f225f"> Problem    commmand not found</rich_text><rich_text>
+</rich_text>
+			<rich_text scale="h3" underline="single">enable/disable services in  Systemd init</rich_text>
+			<rich_text> 1:21:05
+  </rich_text>
+			<rich_text family="monospace">sudo dpkg -l | grep systemd</rich_text>
+			<rich_text>: check if systemd package is   
+   systemctl enable    apache2: </rich_text>
+			<rich_text background="#dda0225f225f"> Problem    commmand not found</rich_text>
+			<rich_text>
 
 1:23
-</rich_text><rich_text foreground="#e7ca56701706" scale="h3" underline="single" weight="heavy">Creating scripts that cut the ip from succesfull ping commad</rich_text><rich_text>:
+</rich_text>
+			<rich_text foreground="#e7ca56701706" scale="h3" underline="single" weight="heavy">Creating scripts that cut the ip from succesfull ping commad</rich_text>
+			<rich_text>:
 
 1. Store output of ping in “ip.txt” :  ping -c 1  127.0.0.1 &gt; ip.txt
 2. Pull address in sucssefull result:   cat ip.txt | grep &quot;64 bytes&quot; | cut -d &quot; &quot; -f 4 | tr -d &quot;:&quot;
       If command failes noting will be returned.   1:28:16
-3.The script   </rich_text><rich_text underline="single" weight="heavy"> ipsweep.sh</rich_text><rich_text>
+3.The script   </rich_text>
+			<rich_text underline="single" weight="heavy"> ipsweep.sh</rich_text>
+			<rich_text>
  
 #!/bin/bash
 if [&quot;$1&quot; == &quot;&quot;]
@@ -57,12 +96,17 @@ Runing nmap for every ip in file iplist.txt
   
 
      
- </rich_text><node name="network commands" prog_lang="custom-colors" readonly="False" tags="" unique_id="3"><rich_text>ifconfig:
+ </rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="network commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="3">
+				<rich_text>ifconfig:
 iwconfig:
 ping:
 arp -a:
 netstat -ano:     Active Internet connections (servers and established)
-route:  Kernel IP   routing</rich_text></node><node name="file system" prog_lang="custom-colors" readonly="False" tags="" unique_id="4"><rich_text>cmd - current directory
+route:  Kernel IP   routing</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="file system" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="0.0" unique_id="4">
+				<rich_text>cmd - current directory
  cd Desktop/ - move to desktop directory
  mkdir  &lt;dir name&gt;  - create  directory
 1.   rmdir  &lt;dir name&gt;  - remove directory
@@ -84,11 +128,47 @@ route:  Kernel IP   routing</rich_text></node><node name="file system" prog_lang
  
 17.  sudo apt purge *impacket* :  uninstall
 18. cd /opt 
-19. sudo git  clone </rich_text><rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text><rich_text>
+19. sudo git  clone </rich_text>
+				<rich_text link="webs https://github.com/SecureAuthCorp/impacket.git">https://github.com/SecureAuthCorp/impacket.git</rich_text>
+				<rich_text>
 
  
 
  
  
- </rich_text></node><node name="Python" prog_lang="custom-colors" readonly="False" tags="" unique_id="7"><rich_text>1:42:50</rich_text></node></node><node name="Episode2" prog_lang="custom-colors" readonly="False" tags="" unique_id="8"><rich_text link="webs https://www.youtube.com/watch?v=egg-GoT5iVk&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj&amp;index=2">https://www.youtube.com/watch?v=egg-GoT5iVk&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj&amp;index=2</rich_text><rich_text>
-4:54</rich_text></node></node></cherrytree>
+ </rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Episode2" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="1576420825.52" unique_id="8">
+			<rich_text link="webs https://www.youtube.com/watch?v=egg-GoT5iVk&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj&amp;index=2">https://www.youtube.com/watch?v=egg-GoT5iVk&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj&amp;index=2</rich_text>
+			<rich_text>
+ </rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="0.0" ts_lastsave="1577094885.23" unique_id="7">
+				<rich_text>
+12:50
+To find location of python3  interpeter  run  ‘which python3’ 
+! /usr/bin/python3
+#To find location of python3 print 'which python&quot;
+#zero to Hero Pentesting: Episode 2 - Python 101
+#https://www.youtube.com/watch?v=egg-GoT5iVk&amp;list=PLLKT__MCUeiwBa7d7F_vN1GUwz_2TmVQj&amp;index=2
+# 14:12
+print(&quot;String and Things&quot;)
+print(&quot;&quot;&quot;Hello in multlin
+string 
+string &quot;&quot;&quot;)
+print (50//4) # 12
+print (50%4) # 2
+qu =&quot; All the love of the world&quot;
+print (len(qu))
+print (qu.upper())
+print (qu.lower())
+print (qu.title())
+ 
+#25:00
+#31.44  functions
+
+#1:18</rich_text>
+			</node>
+		</node>
+	</node>
+</cherrytree>

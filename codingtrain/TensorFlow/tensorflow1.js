@@ -4,10 +4,11 @@
 
 //S6.4: TensorFlow.js: Memory Management - Intelligence and Learning
 // https://www.youtube.com/watch?v=FbSlrm2GmC8&list=PLRqwX-V7Uu6YIeVA3dNxbR9PYj4wV31oQ&index=4
+//https://www.youtube.com/watch?v=F4WWukTWoXY
 // https://js.tensorflow.org/api/latest/
 // https://js.tensorflow.org/api/latest/#Operations
-
-// 4:13
+//https://js.tensorflow.org/api/latest/#sequential
+// 6:13
 
 var   tense;
 function setup() {
