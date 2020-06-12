@@ -1,5 +1,6 @@
 // Change table style to style 1
-//page 51 ajax and php
+//AJAX And PHP Building Responsive Web Applications
+//page 51  
 function setStyle1()
 {
  // obtain references to HTML elements
